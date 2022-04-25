@@ -1,9 +1,10 @@
 ---
 - name: get public ip
   hosts: all
+
   tasks:
-    - name: return public ip to registered var
-      command: curl ifconfig.me
-      register: public_ip
-      debug:
-        msg: public_ip={{ public_ip.stdout }}
+  - name: return public ip to registered var
+    command: curl ifconfig.me
+    register: public_ip
+    debug:
+      msg: public_ip={{ public_ip.stdout }}
