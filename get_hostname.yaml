@@ -1,6 +1,5 @@
 ---
 - hosts: all
-  gether_facts: no
 
   tasks:
     - name: get hostname
