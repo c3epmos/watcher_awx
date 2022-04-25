@@ -10,14 +10,14 @@
 
     - name: install docker-ce-3:20.10.8-3.el7.x86_64
       package:
-        name: docker-ce
-        state: 3:20.10.8-3.el7.x86_64
+        name: docker-ce-3:20.10.8-3.el7.x86_64
+        state: present
       become: yes
 
     - name: install containerd.io
       package:
-        name: containerd.io
-        state: 1.5.11-3.1.el7
+        name: containerd.io-1.5.11-3.1.el7.x86_64
+        state: present
       become: yes
 
     - name: start docker
