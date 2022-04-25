@@ -1,0 +1,13 @@
+---
+- name: get public ip
+  hosts: all
+  gether_facts: no
+
+  tasks:
+    - name: get hostname
+      shell: echo $HOSTNAME
+      register: result
+
+    - name: print the var
+      debug:
+        var: result
