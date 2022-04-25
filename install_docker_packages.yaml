@@ -1,0 +1,28 @@
+---
+- hosts: all
+
+  tasks:
+    - name: add docker repo
+      get_url:
+        url: https://download.docker.com/linux/centos/docker-ce.repo
+        dest: /etc/yum.repos.d/docker-ce.repo
+      become: yes
+
+    - name: install docker-ce-3:20.10.8-3.el7.x86_64
+      package:
+        name: docker-ce
+        state: 3:20.10.8-3.el7.x86_64
+      become: yes
+
+    - name: install containerd.io
+      package:
+        name: containerd.io
+        state: 1.5.11-3.1.el7
+      become: yes
+
+    - name: start docker
+      service:
+        name: docker
+        state: started
+        enabled: yes
+      become: yes
