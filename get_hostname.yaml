@@ -1,6 +1,5 @@
 ---
-- name: get public ip
-  hosts: all
+- hosts: all
   gether_facts: no
 
   tasks:
