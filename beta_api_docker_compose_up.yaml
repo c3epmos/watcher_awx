@@ -2,9 +2,12 @@
 - hosts: all
   become: yes
 
+  collections:
+    - name: community.docker
+
   tasks:
     - name: docker-compose.yml file copy
-      ansible.builtin.copy:
+      copy:
         src: beta_api_docker_compose.yml
         dest: /var/docker_compose.yml
         owner: root
