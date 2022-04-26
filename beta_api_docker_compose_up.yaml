@@ -6,7 +6,7 @@
     - name: docker-compose.yml file copy
       copy:
         src: beta_api_docker_compose.yml
-        dest: /var/docker_compose.yml
+        dest: /var/docker-compose.yml
         owner: root
         group: root
         mode: '0644'
