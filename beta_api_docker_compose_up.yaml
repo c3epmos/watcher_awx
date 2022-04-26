@@ -1,0 +1,31 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: docker-compose.yml file copy
+      ansible.builtin.copy:
+        src: beta_api_docker_compose.yml
+        dest: /var/docker_compose.yml
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: docker login
+      community.docker.docker_login:
+        registry_url: beta-watcher-registry.kr.ncr.ntruss.com
+        username: 04653D30386ABB3D3E21
+        password: 4C71DA00C492402EE8EE33CA39E46F9E9ACD3C65
+
+    - name: prune everything
+      community.docker.docker_prune:
+        containers: yes
+        images: yes
+        networks: yes
+        volumes: yes
+        builder_cache: yes
+
+    - name: docker-compose up
+      community.docker.docker_compose:
+        project_src: /var/docker_compose.yml
+        build: no

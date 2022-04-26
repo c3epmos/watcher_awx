@@ -1,0 +1,29 @@
+version: "3"
+ 
+services:
+  gunicorn:
+    container_name: gunicorn
+    image: beta-watcher-registry.kr.ncr.ntruss.com/gunicorn:latest
+    volumes:
+        - /volumes/static:/opt/watcher-v2-api/static
+    working_dir: /opt/watcher-v2-api
+    command:
+      - bash
+      - -c
+      - |
+        python manage.py collectstatic --noinput
+        gunicorn watcher.wsgi:application --bind 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
+  nginx:
+    container_name: nginx
+    image: beta-watcher-registry.kr.ncr.ntruss.com/nginx:latest
+    volumes:
+      - /volumes/static:/static
+    working_dir: /etc/nginx
+    ports:
+      - "0.0.0.0:80:80"
+    depends_on:
+      - gunicorn
