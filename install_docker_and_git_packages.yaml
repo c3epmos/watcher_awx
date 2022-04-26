@@ -1,34 +1,36 @@
 ---
 - hosts: all
+  become: yes
 
   tasks:
     - name: add docker repo
       get_url:
         url: https://download.docker.com/linux/centos/docker-ce.repo
         dest: /etc/yum.repos.d/docker-ce.repo
-      become: yes
 
     - name: install docker-ce-3:20.10.8-3.el7.x86_64
       package:
         name: docker-ce-3:20.10.8-3.el7.x86_64
         state: present
-      become: yes
-
-    - name: install git
-      package:
-        name: git-1.8.3.1-23.el7_8
-        state: present
-      become: yes
 
     - name: install containerd.io
       package:
         name: containerd.io-1.5.11-3.1.el7.x86_64
         state: present
-      become: yes
+
+    - name: install docker-compose
+      get_url:
+        url: https://github.com/docker/compose/releases/download/1.23.1/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: 'u+x,g+x'
+
+    - name: install git
+      package:
+        name: git-1.8.3.1-23.el7_8
+        state: present
 
     - name: start docker
       service:
         name: docker
         state: started
         enabled: yes
-      become: yes
