@@ -18,6 +18,6 @@
       shell: docker system prune --volumes -a -f
 
     - name: docker-compose up
-      shell: docker-compose up
+      shell: docker-compose up -d
       args:
         chdir: /var
