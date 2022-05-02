@@ -14,6 +14,12 @@
     - name: docker login
       shell: docker login beta-watcher-registry.kr.ncr.ntruss.com -u 04653D30386ABB3D3E21 -p 4C71DA00C492402EE8EE33CA39E46F9E9ACD3C65
 
+    - name: stop docker contaniners
+      shell: docker stop $(docker ps -a -q)
+
+    - name: remove docker contaniners
+      shell: docker rm $(docker ps -a -q)
+
     - name: prune everything
       shell: docker system prune --volumes -a -f
 
