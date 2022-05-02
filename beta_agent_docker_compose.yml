@@ -3,8 +3,6 @@ version: "3"
 services:
   agent:
     container_name: agent
-    environment:
-        - HOST_HOSTNAME=${HOSTNAME}
     hostname: "${HOST_HOSTNAME}"
     image: beta-watcher-registry.kr.ncr.ntruss.com/agent:latest
     volumes:

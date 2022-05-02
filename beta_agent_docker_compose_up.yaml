@@ -23,6 +23,9 @@
     - name: prune everything
       shell: docker system prune --volumes -a -f
 
+    - name: create .env file
+      shell: echo "HOST_HOSTNAME=$(hostname)-agent" > .env
+
     - name: docker-compose up
       shell: docker-compose up -d
       args:
