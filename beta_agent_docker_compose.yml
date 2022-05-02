@@ -3,6 +3,7 @@ version: "3"
 services:
   agent:
     container_name: agent
+    hostname: '{{.Node.Hostname}}'
     image: beta-watcher-registry.kr.ncr.ntruss.com/agent:latest
     volumes:
       - /var/watcher-v2/log:/var/watcher-v2/log
