@@ -24,6 +24,7 @@ services:
     image: beta-watcher-registry.kr.ncr.ntruss.com/filebeat:latest
     volumes:
       - /var/watcher-v2/log:/var/watcher-v2/log
-    working_dir: /etc/filebeat
+    working_dir: /usr/share/filebeat
+    command: filebeat run
     depends_on:
       - agent
