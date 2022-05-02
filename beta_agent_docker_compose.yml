@@ -5,7 +5,8 @@ services:
     container_name: agent
     image: beta-watcher-registry.kr.ncr.ntruss.com/agent:latest
     volumes:
-      - /var/watcher_v2/log:/var/watcher_v2/log
+      - /var/watcher-v2/log:/var/watcher-v2/log
+      - /var/watcher-v2/data:/var/watcher-v2/data
     working_dir: /opt/watcher-v2-agent/
     command: python3 main.py
 
@@ -22,7 +23,7 @@ services:
     container_name: filebeat
     image: beta-watcher-registry.kr.ncr.ntruss.com/filebeat:latest
     volumes:
-      - /var/watcher_v2/log:/var/watcher_v2/log
+      - /var/watcher-v2/log:/var/watcher-v2/log
     working_dir: /etc/filebeat
     depends_on:
       - agent
