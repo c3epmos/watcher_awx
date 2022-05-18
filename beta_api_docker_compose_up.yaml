@@ -16,9 +16,11 @@
 
     - name: stop docker contaniners
       shell: docker stop $(docker ps -a -q)
+      ignore_errors: yes
 
     - name: remove docker contaniners
       shell: docker rm $(docker ps -a -q)
+      ignore_errors: yes
       
     - name: prune everything
       shell: docker system prune --volumes -a -f
