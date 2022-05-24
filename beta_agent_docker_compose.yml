@@ -20,6 +20,9 @@ services:
       - agent
 
   filebeat:
+    env_file:
+      - "/var/watcher-v2/data/.env"
+    hostname: "${HOSTNAME}_filebeat"
     container_name: filebeat
     image: beta-watcher-registry.kr.ncr.ntruss.com/filebeat:latest
     volumes:
