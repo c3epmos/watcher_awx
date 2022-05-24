@@ -3,6 +3,15 @@
   become: yes
 
   tasks:
+    - name: get hostname
+      shell: hostname
+      register: hostname
+
+    - name: create .env file
+      copy:
+        dest: /var/.env
+        content: "HOSTNAME={{ hostname.stdout }}"
+
     - name: docker-compose.yml file copy
       copy:
         src: beta_agent_docker_compose.yml
