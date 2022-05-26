@@ -34,3 +34,14 @@
         name: docker
         state: started
         enabled: yes
+
+    - name: logrotate file copy
+      copy:
+        src: watcher_agent_v2_log
+        dest: /etc/logrotate.d/watcher_agent_v2_log
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: execute logrotate
+      shell: logrotate -v -f /etc/logrotate.conf

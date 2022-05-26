@@ -1,0 +1,4 @@
+/var/watcher-v2/log/*.json {
+  daily
+  rotate 5
+}
