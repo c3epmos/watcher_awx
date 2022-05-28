@@ -44,4 +44,4 @@
         mode: '0644'
 
     - name: execute logrotate
-      shell: logrotate -v -f /etc/logrotate.conf
+      shell: logrotate -v -f /etc/logrotate.d/watcher_agent_v2_log
